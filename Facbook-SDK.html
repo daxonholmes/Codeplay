@@ -1,18 +1,53 @@
 <!DOCTYPE HTML>
 <head>
-<title></title>
-</head>
-<body>
-<!-- Downloads Facebook SDK -->	
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	<meta http-equiv="Content-Type" content ="text/html; charset=utf-8"/>
+<title>Untitled Document</title>
+<script src="http://www.parsecdn.com/js/parse-1.2.13.min.js">
+Parse.initialize("0zI1ntmSlXxqGD1Hul7PCtAj2s1uA8NF3WWfLRGV", "EDhRYuNL2FnaD5LlgkFGdGDUaVZJ91WSWKKjn2ih");
+var TestObject = Parse.Object.extend("TestObject");
+var testObject = new TestObject();
+testObject.save({foo: "bar"}, {
+  success: function(object) {
+    alert("yay! it worked");
+  }
+});
 
-<!-- Gets Facebook Feed -->
-<div class="fb-activity" data-site="developers.facebook.com" data-action="likes, recommends" data-colorscheme="light" data-header="true"></div>
+window.fbAsyncInit = function() {
+  Parse.FacebookUtils.init({
+    appId      : '0zI1ntmSlXxqGD1Hul7PCtAj2s1uA8NF3WWfLRGV', // Facebook App ID
+    channelUrl : '//WWW.omnivore.us', // Channel File
+    status     : true, // check login status
+    cookie     : true, // enable cookies to allow Parse to access the session
+    xfbml      : true  // parse XFBML
+  });
+ 
+  // Additional initialization code here
+};
+
+
+</script>
+</head>
+<body >
+	<!-- Signs up a User Through Facebook -->
+	<script type="text/javascript">
+function signUp() {
+Parse.FacebookUtils.logIn(null, {
+  success: function(user) {
+    if (!user.existed()) {
+      alert("User signed up and logged in through Facebook!");
+    } else {
+      alert("User logged in through Facebook!");
+    }
+  },
+  error: function(user, error) {
+    alert("User cancelled the Facebook login or did not fully authorize.");
+  }
+});
+}
+</script>
+
+<button type="button" onclick=function(signUp)>Sign Up
+
+</button>
+
 </body>
